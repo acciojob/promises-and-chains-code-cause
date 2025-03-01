@@ -1,13 +1,55 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="myForm">
+        <input type="number" id="age" placeholder="Enter your age" required>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <button type="submit" id="btn">Submit</button>
+    </form>
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let form = document.querySelector("#myForm");
+            let ageInput = document.querySelector("#age");
+            let nameInput = document.querySelector("#name");
 
-  <body>
-    <!-- write the body here -->
+            form.addEventListener("submit", (event) => {
+                event.preventDefault(); // Prevent default form submission
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+                let ageValue = ageInput.value.trim();
+                let nameValue = nameInput.value.trim();
+
+                // ✅ Validation: Check if inputs are empty
+                if (ageValue === "" || nameValue === "") {
+                    alert("Please enter valid details.");
+                    return;
+                }
+
+                let age = parseInt(ageValue, 10);
+
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        if (age >= 18) {
+                            resolve(Welcome, ${nameValue}. You can vote.);
+                        } else {
+                            reject(Oh sorry ${nameValue}. You aren't old enough.); // ✅ Removed extra comma
+                        }
+                    }, 4000);
+                })
+                .then((message) => {
+                    alert(message);
+                })
+                .catch((error) => {
+                    alert(error);
+                });
+            });
+        });
+    </script>
+</body>
 </html>
